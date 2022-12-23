@@ -5,19 +5,22 @@ import { schemaTypes } from "./schemas";
 import { myTheme } from "./theme";
 import StudioNavbar from "./components/StudioNavbar"
 import Logo from "./components/Logo";
+import { getDefaultDeocumentNode } from "./structure";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!;
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET!;
 
 export default defineConfig({
   basePath: "/studio",
-  name: "PAPAFAM_Content_Studio",
-  title: "PAPAFAM Content Studio",
+  name: "Gnark_content_studio",
+  title: "GNARK Content Studio",
 
   projectId,
   dataset,
 
-  plugins: [deskTool(), visionTool()],
+  plugins: [deskTool({
+    defaultDocumentNode: getDefaultDeocumentNode,
+  }), visionTool()],
 
   schema: {
     types: schemaTypes,
