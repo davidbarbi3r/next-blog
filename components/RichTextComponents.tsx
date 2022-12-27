@@ -65,13 +65,28 @@ const RichTextComponents: PortableTextReactComponents = {
       );
     },
   },
-  listItem: undefined,
-  hardBreak: false,
-  unknownMark: false,
-  unknownType: undefined,
-  unknownBlockStyle: undefined,
-  unknownList: undefined,
-  unknownListItem: undefined,
+  listItem: ({ children }: any) => {
+    return <li className="py-5">{children}</li>;
+  },
+  hardBreak: () => {
+    return <br />;
+  },
+  unknownMark: () => {
+    return <span />;
+  },
+  unknownType: () => {
+    return <span />;
+  },
+  unknownBlockStyle: () => {  
+    return <span />;
+  },
+  unknownListItem: () => {
+    return <span />;
+  },
+  unknownList: () => {
+    return <span />;
+  },
+
 };
 
 export default RichTextComponents;
