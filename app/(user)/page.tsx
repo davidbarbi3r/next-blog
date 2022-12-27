@@ -15,6 +15,8 @@ const query = groq`
   } | order(_createdAt desc)
 `
 
+export const revalidate = 120; // 2 minutes, revalidate the page every 2 minutes
+
 export default async function HomePage () {
 
   if(previewData()){

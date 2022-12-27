@@ -18,7 +18,7 @@ export default function Header () {
             </div>
 
             <div>
-                <Link href="#">Let's subscribe to my newletter</Link>
+                <Link href="#">Let&apos;s subscribe to my newletter</Link>
             </div>
         </header>
     )

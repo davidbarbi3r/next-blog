@@ -15,6 +15,30 @@ interface Props {
   };
 }
 
+// This function gets called at build time it makes a request to the Sanity API to get all the slugs
+// so that the blog pages can be generated during build time
+// no delay for the user
+// in other hand it doesn't work when we publish a new post or update an existing one (app already built)
+// we need to rebuild the app to get the new post
+// that's why we need to use the revalidate option 
+
+export const revalidate = 120; // 2 minutes, revalidate the page every 2 minutes
+
+export async function generateStaticParams() {
+    const query = groq`
+        *[_type=='post'] {
+            slug
+        }
+    `;
+    
+    const slugs: Post[] = await client.fetch(query);
+    const slugRoutes = slugs.map(slug => slug.slug.current);
+
+    return slugRoutes.map(slug => ({
+        slug: slug
+    }))
+}
+
 async function Post({ params: { slug } }: Props) {
   const query = groq`
         *[_type=='post' && slug.current == $slug][0]
